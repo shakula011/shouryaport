@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shourya Akula | UT MechE Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <style>
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: #0a0a0a;
+    }
+    .falling-longhorns {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .falling-longhorns img {
+      position: absolute;
+      width: 50px;
+      opacity: 0.80;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 0.80; }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    .fade-element {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-element.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-element.fading-out {
+      opacity: 0.3;
+    }
+  </style>
+</head>
+<body>
+  <div class="falling-longhorns"></div>
+
+  <nav class="container-fluid">
+    <ul><li><strong>Shourya Akula</strong></li></ul>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact" role="button">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <div class="grid">
+      <section id="about">
+        <hgroup>
+          <h2>Mechanical Engineer | Biotech & AI/ML Enthusiast</h2>
+          <h3>University of Texas at Austin</h3>
+        </hgroup>
+        <p>
+          The versatility of mechanical engineering across industries captivates me, but it's the intersection of engineering and healthcare where I've found my true calling. Through my journey in Mechanical Engineering, I've honed my focus on the private healthcare sector, where innovation meets impact.
+        </p>
+        <p>
+          During my internship at Medical City Healthcare, I gained hands-on experience managing over 100 biomedical systems—including PET, CT, and MRI equipment—while overseeing a patient database of 2,500+ individuals. This exposure revealed the transformative potential of AI/ML integration in biomedical equipment and pharmaceutical applications, fueling my passion for technology-driven healthcare solutions.
+        </p>
+        <p>
+          My mission is clear: to advance biotechnology and ensure accessible, equitable healthcare for every patient across America. I'm driven by the vision of a future where cutting-edge innovation makes world-class care universally available.
+        </p>
+        <h3>Education</h3>
+        <p>B.S. Mechanical Engineering, University of Texas at Austin (Expected Dec 2027)</p>
+        <ul>
+          <li>Relevant Coursework: Engineering Graphics and Design, Engineering Mechanics of Solids, Engineering Communications, Programming and Engineering Computational Methods</li>
+        </ul>
+
+        <h3 id="experience">Experience</h3>
+        <p><strong>Medical City Healthcare</strong> – Intern (2021–2024)</p>
+        <ul>
+          <li>Performed routine checks on biomedical equipment to ensure compliance</li>
+          <li>Managed a database of over 2500+ patients</li>
+          <li>Analyzed hospital workflows to optimize protocol</li>
+        </ul>
+
+        <p><strong>Shoyo Care Associates</strong> – Founder (2022–2024)</p>
+        <ul>
+          <li>Founded 501(c)(3) nonprofit supporting children and young adults in illness</li>
+          <li>Orchestrated fundraising events and partnered with major hospitals</li>
+          <li>Created volunteering opportunities and led strategic operations</li>
+        </ul>
+
+        <p><strong>DECA</strong> – International Representative (2021–2023)</p>
+        <ul>
+          <li>Placed 7th internationally in Operations Research</li>
+          <li>Developed AI-driven solutions for customer engagement</li>
+          <li>Delivered keynote and represented Texas at multiple conferences</li>
+        </ul>
+
+        <h3>Technical Skills</h3>
+        <ul>
+          <li>CAD Tools</li>
+          <li>Python, Java, SQL</li>
+          <li>Cloud Computing (AWS, Azure)</li>
+          <li>Business Analysis</li>
+        </ul>
+
+        <h3>Projects</h3>
+        <p>Coming soon! Stay tuned for some exciting biotech + AI/ML work.</p>
+      </section>
+    </div>
+  </main>
+
+  <section aria-label="Subscribe example">
+    <div class="container">
+      <article>
+        <hgroup>
+          <h2>Stay in touch</h2>
+          <h3>Get updates when I publish new work</h3>
+        </hgroup>
+        <form class="grid">
+          <input type="text" id="firstname" name="firstname" placeholder="Your name" aria-label="Your name" required />
+          <input type="email" id="email" name="email" placeholder="Email address" aria-label="Email address" required />
+          <button type="submit" onclick="event.preventDefault()">Subscribe</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <footer class="container">
+    <small>
+      <a href="mailto:shakula@utexas.edu">Email</a> •
+      <a href="https://www.linkedin.com/in/shourya-akula-b64796216/">LinkedIn </a>
+    </small>
+  </footer>
+
+  <script>
+    const container = document.querySelector('.falling-longhorns');
+    const longhornImage = 'longhorn.png';
+    for (let i = 0; i < 20; i++) {
+      const img = document.createElement('img');
+      img.src = longhornImage;
+      img.style.left = Math.random() * 100 + 'vw';
+      img.style.animationDuration = (10 + Math.random() * 10) + 's';
+      img.style.top = -(Math.random() * 100) + 'px';
+      container.appendChild(img);
+    }
+
+    document.querySelectorAll('p, h2, h3, ul, hgroup, article, section').forEach(el => {
+      el.classList.add('fade-element');
+    });
+
+    function handleScroll() {
+      const fadeElements = document.querySelectorAll('.fade-element');
+      const windowHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+      
+      fadeElements.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const elementTop = rect.top + scrollY;
+        const elementBottom = elementTop + rect.height;
+        const viewportTop = scrollY;
+        const viewportBottom = scrollY + windowHeight;
+        
+        if (rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2) {
+          element.classList.add('visible');
+          element.classList.remove('fading-out');
+        } else if (rect.top < windowHeight * 0.2 && rect.bottom < windowHeight * 0.5) {
+          element.classList.add('fading-out');
+        } else if (rect.bottom > windowHeight) {
+          element.classList.remove('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('load', handleScroll);
+    handleScroll();
+  </script>
+</body>
+</html>
